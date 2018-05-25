@@ -42,19 +42,38 @@ class FooController {
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
 	public List<Foo> findAll() {
+		/*
 		List<Foo> foo = new ArrayList<Foo>();
 		foo.add(new Foo(1L,"toto"));
 		foo.add(new Foo(2L,"titi"));
 		foo.add(new Foo(3L,"tutu"));		
 		return foo;
+		*/
+		return fooService.getAll();
 	}		
+	
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	@ResponseBody
+	public void delete(@PathVariable("id") Long id) {
+	  //return new Foo(id);
+		fooService.deleteFoo(id);
+	}
+	
+	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+	@ResponseBody
+	public void put(@PathVariable("id") Long id,@RequestBody Foo resource) {
+		resource.setId(id);
+		fooService.saveFoo(resource);
+	}
 	
 	@RequestMapping(method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
 	@ResponseBody
 	public Long create(@RequestBody Foo resource) {
-		System.out.println(resource);
-	    return 1L;
+		//System.out.println(resource);
+		//fooService.saveFoo(resource);
+	    //return 1L;
+	    return fooService.saveFoo(resource).getId();
 	}
 	/*
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)

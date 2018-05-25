@@ -13,4 +13,5 @@ public interface FooService {
 	public List<Foo> getAll();
 	public Optional<Foo> findbyId(Long id);
 // TODO ajouter les autres méthodes
+	public void deleteFoo(Long id);
 }

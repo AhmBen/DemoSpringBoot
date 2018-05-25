@@ -21,12 +21,16 @@ public class FooServiceImpl implements FooService {
     }
 
     public List<Foo> getAll() {
-	  return null; // TODO
+      return fooRepository.findAll();
+	  //return null; // TODO
     }
     
-    public Optional<Foo> findbyId(Long id) {
-		
+    public Optional<Foo> findbyId(Long id) {		
 	  return fooRepository.findById(id);
     }
 
+    public void deleteFoo(Long id) {
+  	  fooRepository.deleteById(id);
+  	  //return foo;
+      }
 }
